@@ -1,17 +1,14 @@
 
-#include "gtest/gtest.h"  // 비공식
+#include "gtest/gtest.h"  
 #include "gmock/gmock.h"
-#include "../DeviceDriver/DeviceDriver.cpp" // 자체파일 순으로 
+#include "../DeviceDriver/DeviceDriver.cpp"
 #include<stdexcept>
 #include<iostream>
-// TEST - Read 5 times & check value 
-// Return read 시 값이 나온다 // 나오지
-//
-//1 Mock 생성
+
 using  namespace testing; 
 using namespace std; 
 
-class FlashMock :public FlashMemoryDevice {  // 인터페이스를 상속 받는구나 ?
+class FlashMock :public FlashMemoryDevice {  
 public:
 	MOCK_METHOD(unsigned char, read, (long address) , (override));
 	MOCK_METHOD(void, write, (long address, unsigned char data), (override));
@@ -19,7 +16,7 @@ public:
 
 
 
-TEST(TestCaseName, ReadFiveTimes) {	// stub  5회 read 호출시 pass
+TEST(TestCaseName, ReadFiveTimes) {	
 
 	FlashMock mk;
 	DeviceDriver devdrive(&mk);
